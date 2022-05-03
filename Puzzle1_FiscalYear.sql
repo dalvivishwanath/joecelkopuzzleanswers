@@ -2,12 +2,12 @@ DROP TABLE IF EXISTS dbo.FiscalYear;
 
 CREATE TABLE dbo.FiscalYear
 (
-  [fiscal_year]	    INTEGER						NOT NULL
- ,[start_date]	    DATE						NOT NULL
+  [fiscal_year]	INTEGER					NOT NULL
+ ,[start_date]	DATE						NOT NULL
  ,[end_date]		DATE						NOT NULL 
- ,CONSTRAINT		CHK_Date_Range			    CHECK ([start_date] < [end_date])
+ ,CONSTRAINT		CHK_Date_Range			      CHECK ([start_date] < [end_date])
  ,CONSTRAINT		CHK_Date_No_of_Days		    CHECK (DATEDIFF(DAY,[start_date],[end_date]) >= 364 OR DATEDIFF(DAY,[start_date],[end_date]) = 365)
- ,CONSTRAINT		CHK_fiscal_year			    CHECK (fiscal_year= YEAR([start_date]))
+ ,CONSTRAINT		CHK_fiscal_year			      CHECK (fiscal_year= YEAR([start_date]))
  ,CONSTRAINT		CHK_start_date_month_date	CHECK (FORMAT([start_date], 'MM-dd') = '04-01' )
  ,CONSTRAINT		CHK_end_date_month_date		CHECK (FORMAT([end_date], 'MM-dd') = '03-31')
  ,CONSTRAINT		PK_FiscalYear_fiscalyear_startdate_end_date PRIMARY KEY	CLUSTERED ([fiscal_year], [start_date], [end_date])
